@@ -1,0 +1,9 @@
+[project]
+name = "tcc-daniel-editado"
+version = "0.1.0"
+description = "The primary goal of this project is to develop an Electrical Impedance Tomography (EIT) system. It involves collecting data from a custom-built hardware device designed specifically for EIT and processing the sensor data to generate images. This project builds upon the work developed by Daniel."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "opencv-python>=4.11.0.86",
+]
