@@ -1,11 +1,9 @@
 from cmath import pi
 import re
-import spidev
-import RPi.GPIO as GPIO
+#import spidev
+#import RPi.GPIO as GPIO
 import time
 import csv
-
-
 
 class ComunicaSPI:
     def initSPI(self):
@@ -100,7 +98,6 @@ class ComunicaSPI:
     def setPinCorrente(self,pinCorrente:int):
         self.spi.writebytes([0x11,pinCorrente])#Seta o pino de Corrente com o valor hex pinCorrente com o comando 0x11
     
-
     def getPinTense(self):
         """
         Retorna o eletrodo de leitura de tensão es carregado no arduino, lembrando que esse valor sera numerico mas
