@@ -1,11 +1,41 @@
-# Base image
-FROM RaspberryPiOS:latest
-FROM python:3.11.3
+# Use a imagem base do Ubuntu LTS
+FROM ubuntu:22.04
 
-# Update system and install necessary tools
+# Atualizar o sistema e instalar ferramentas básicas
 RUN apt-get update && apt-get install -y \
+    software-properties-common \
     build-essential \
-    libgpiod-dev \
+    curl \
+    wget \
+    libffi-dev \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libncurses5-dev \
+    libgdbm-dev \
+    libnss3-dev \
+    liblzma-dev \
+    tk-dev \
+    tcl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalar Python 3.11.3
+RUN wget https://www.python.org/ftp/python/3.11.3/Python-3.11.3.tgz && \
+    tar -xvf Python-3.11.3.tgz && \
+    cd Python-3.11.3 && \
+    ./configure --enable-optimizations && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf Python-3.11.3 Python-3.11.3.tgz
+
+# Atualizar pip para a última versão
+RUN python3.11 -m ensurepip && python3.11 -m pip install --upgrade pip
+
+# Instalar bibliotecas Qt e outras dependências gráficas
+RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
@@ -25,32 +55,31 @@ RUN apt-get update && apt-get install -y \
     libxcb-randr0 \
     libxcb-util1 \
     libxcb-xkb1 \
-    libqt5widgets5 \
     libx11-xcb1 \
-    mesa-utils \
+    libqt5widgets5 \
+    x11-apps \
     x11-utils \
-    curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Poetry
+# Instalar Poetry
 RUN pip install poetry
 
-# Set Poetry to not create a virtual environment
+# Configurar o Poetry para não criar ambientes virtuais
 ENV POETRY_VIRTUALENVS_CREATE=false
 
-# Copy the application code to the container
-COPY . /src
-
-# Set the working directory in the container
-WORKDIR /src
-
-# Initialize Poetry and add dependencies
-RUN poetry init --no-interaction --name tcc-daniel-app && \
-    poetry add opencv-python PyQt5 numpy spidev RPi.GPIO
-
-# Configure Qt environment
+# Configurar variáveis de ambiente do Qt
 ENV QT_DEBUG_PLUGINS=1
 ENV QT_QPA_PLATFORM=xcb
 
-# Correct ENTRYPOINT to run Python script
-ENTRYPOINT ["poetry", "run", "python", "TCC_DANIEL/Prog/aplication.py"]
+# Definir o diretório de trabalho
+WORKDIR /src
+
+# Copiar o código-fonte para o container
+COPY . .
+
+# Instalar dependências com o Poetry
+RUN poetry init --no-interaction --name tcc-daniel-app && \
+    poetry add opencv-python PyQt5 numpy spidev RPi.GPIO
+
+# Definir o comando padrão para executar o programa
+ENTRYPOINT ["poetry", "run", "python3.11", "TCC_DANIEL/Prog/aplication.py"]
