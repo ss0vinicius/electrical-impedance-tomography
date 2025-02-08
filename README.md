@@ -1,25 +1,58 @@
-C:\Users\vinic\AppData\Local\Programs\Python\Python311\Scripts
-C:\Users\vinic\AppData\Local\Programs\Python\Python311
+# Python 3.11.3 Setup and Dependencies
 
-Instalei o Python 3.11.3
-Instalei o pip
-Coloquei o Python no Path do Windows
-Instalei a biblioteca de leitura do Python do QT Creator: PyQt5
-Instalei a biblioteca do OpenCV para Python: cv2 (pip install opencv-python)
-Instalei a biblioteca para comunicação SPI: spidev (pip install spidev)
+## Installations
+- Installed **Python 3.11.3**
+- Installed **pip**
+- Added Python to **Windows PATH**
+- Installed **PyQt5** (Python binding for Qt Creator)
+- Installed **OpenCV** for Python: `pip install opencv-python`
+- Installed **SPI communication library**: `pip install spidev`
 
-run to create the virtual environment: uv venv --python 3.11.3
-add opencv-python to this repository
-uv pip install pyqt5 to install PyQt5, I wasn't able to add directly from UV
-commented import spidev and import RPi.GPIO, because both are for linux and the code was designed to run in a Raspberry PI 3
-
-Atualização:
-só consegui rodar na Raspberry Pi 4 sem ambiente virtual, precisei instalar as dependências diretamente com sudo apt install python3-depencia:
+## Running on Raspberry Pi 4 (Without Virtual Environment)
+I was only able to run the project on **Raspberry Pi 4** without a virtual environment. I had to install dependencies directly using:
+```sh
 sudo apt install python3-numpy
 sudo apt install python3-spidev
 sudo apt install python3-opencv
 sudo apt install python3-PyQt5
+```
 
-a biblioteca RPi.GPIO eu instalei com o poetry e parece ter funcionado
-Aprendizado: tive muitos problemas com a biblioteca gráfica X11 que tem sido despriorizada em relação a Wayland, mas o Debian ainda usa X11 e a Raspberry PI OS é baseada nele, então o código do Daniel utiliza o X11 para gerar a GUI e precisa estar com esta biblioteca habilitada e funcionando para que a GUI funcione corretamente.
-Também tive muito problema com o PyQt5, só consegui instalar ele com o sudo apt install python3-PyQt5. De todos os outros jeitos (poetry, UV, Docker, pip) eu tive problemas e não funcionou.
+The **RPi.GPIO** library was installed using `poetry`, and it seems to be working fine.
+
+---
+
+## Learnings and Challenges
+- **X11 Graphics Issues:**
+  - I had many problems with the **X11 graphics library**.
+  - **X11 is being deprecated** in favor of Wayland, but **Debian (and Raspberry Pi OS) still use X11**.
+  - The code uses X11 for GUI rendering, so X11 must be properly enabled and functional.
+
+- **PyQt5 Installation Issues:**
+  - The only successful installation method was:
+    ```sh
+    sudo apt install python3-PyQt5
+    ```
+  - Other methods (Poetry, UV, Docker, Pip) **did not work** and caused issues.
+
+
+## Virtual Environment Setup (I tried Docker, UV, Poetry, pyenv, but I had problems running GUI on it.)
+Run the following command to create a virtual environment:
+```sh
+uv venv --python 3.11.3
+```
+
+### Additional Steps
+- Added `opencv-python` to the repository.
+- Installed PyQt5 manually:
+  ```sh
+  uv pip install pyqt5
+  ```
+  (Direct installation via UV was unsuccessful.)
+- Commented out:
+  ```python
+  import spidev
+  import RPi.GPIO
+  ```
+  (These libraries are for Linux and the code is designed to run on a Raspberry Pi 3, in Raspbian SO.)
+
+---
