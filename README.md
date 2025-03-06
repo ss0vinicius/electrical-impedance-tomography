@@ -2,6 +2,8 @@
 
 https://gitdiagram.com/ss0vinicius/electrical-impedance-tomography
 
+![Diagram](/diagram-tcc.png)
+
 
 
 ## Installations
