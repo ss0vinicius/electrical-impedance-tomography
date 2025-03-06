@@ -1,5 +1,7 @@
 # Python 3.11.3 Setup and Dependencies
 
+## Repository Diagram describing the software design
+
 https://gitdiagram.com/ss0vinicius/electrical-impedance-tomography
 
 ![Diagram](/diagram-tcc.png)
