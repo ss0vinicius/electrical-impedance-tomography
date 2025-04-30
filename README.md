@@ -65,6 +65,16 @@ uv venv --python 3.11.3
 
 ---
 
+# LCD configuration
+
+### Touchscreen 
+
+To make the Touchscreen work properly, it is required to use a micro-usb that can transfer data, because in the first test we tried a cable that can only be used to power supply.
+
+### LCD Resolutiom
+
+Using the 7inch HDMI LCD Display-H, the resolution that worked better was 1280x720 pixels.
+
 ### Configure audio, if needed:
 
 I had to configure the audio to persist on the HDMI output.
