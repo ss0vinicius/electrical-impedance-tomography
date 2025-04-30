@@ -64,3 +64,13 @@ uv venv --python 3.11.3
   (These libraries are for Linux and the code is designed to run on a Raspberry Pi 3, in Raspbian SO.)
 
 ---
+
+#How to Run:
+
+should open the file aplication.py with the terminal:
+```python aplication.py```
+
+should be in the right directory, path: ~/Documentos/electrical-impedance-tomography/TCC_Daniel/Prog
+
+so, open the terminal and execute the command:
+```python ~/Documentos/electrical-impedance-tomography/TCC_Daniel/Prog/aplication.py
