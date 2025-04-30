@@ -65,6 +65,28 @@ uv venv --python 3.11.3
 
 ---
 
+### Configure audio, if needed:
+
+I had to configure the audio to persist on the HDMI output.
+
+I needed to modify the file:
+sudo vim /boot/firmware/config.txt
+
+In it, I added:
+
+hdmi_drive=2  
+hdmi_force_hotplug=1
+
+This way, HDMI was created as an audio output, but it couldn't be activated initially.
+
+So I ran:
+
+amixer cset numid=3 2
+
+With that, I was able to select HDMI as the audio output, and both stereo and headphones worked correctly.
+
+--- 
+
 # How to Run:
 
 should open the file aplication.py with the terminal:
