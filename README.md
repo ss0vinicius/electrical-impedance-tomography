@@ -65,7 +65,7 @@ uv venv --python 3.11.3
 
 ---
 
-#How to Run:
+# How to Run:
 
 should open the file aplication.py with the terminal:
 ```python aplication.py```
@@ -73,4 +73,4 @@ should open the file aplication.py with the terminal:
 should be in the right directory, path: ~/Documentos/electrical-impedance-tomography/TCC_Daniel/Prog
 
 so, open the terminal and execute the command:
-```python ~/Documentos/electrical-impedance-tomography/TCC_Daniel/Prog/aplication.py
+```python ~/Documentos/electrical-impedance-tomography/TCC_Daniel/Prog/aplication.py```
