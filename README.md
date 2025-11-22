@@ -22,7 +22,7 @@ I was only able to run the project on **Raspberry Pi 4** without a virtual envir
 sudo apt install python3-numpy
 sudo apt install python3-spidev
 sudo apt install python3-opencv
-sudo apt install python3-PyQt5
+sudo apt install python3-pyqt5
 ```
 
 The **RPi.GPIO** library was installed using `poetry`, and it seems to be working fine.
@@ -38,7 +38,7 @@ The **RPi.GPIO** library was installed using `poetry`, and it seems to be workin
 - **PyQt5 Installation Issues:**
   - The only successful installation method was:
     ```sh
-    sudo apt install python3-PyQt5
+    sudo apt install python3-pyqt5
     ```
   - Other methods (Poetry, UV, Docker, Pip) **did not work** and caused issues.
 
