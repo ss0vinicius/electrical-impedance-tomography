@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 import numpy
 import EIT.eit as TIE
-from EIT import Comunica
+from EIT import communication as Comunica
 import time
 import cv2
 import csv
@@ -442,47 +442,55 @@ class Ui_MainWindow(object):
         
     def aquisiSPI(self):
         self.pushButton_2.setEnabled(False)
-        arduinoSPI = Comunica.ComunicaSPI()
-        arduinoSPI.initSPI()
-        
-        valor = 0
-        
-        
-        numero= 0        
+        Comunica.main()
 
-        for PrimeiroEmissor in range(0,16):
+        self.pushButton.setEnabled(True)
+        self.pushButton_2.setEnabled(True)
+        self.Img_status.setPixmap(QtGui.QPixmap("Img_Eit/desconectado.png"))
             
-            if(PrimeiroEmissor == 15):
-                SegundoEmissor = 0
-            else:
-                SegundoEmissor = PrimeiroEmissor + 1
+#     def aquisiSPI(self):
+#        self.pushButton_2.setEnabled(False)
+#        arduinoSPI = Comunica.ComunicaSPI()
+#        arduinoSPI.initSPI()
+        
+#        valor = 0
+        
+        
+#        numero= 0        
+
+#        for PrimeiroEmissor in range(0,16):
+            
+#            if(PrimeiroEmissor == 15):
+#                SegundoEmissor = 0
+#            else:
+#                SegundoEmissor = PrimeiroEmissor + 1
                 
 
-            if(arduinoSPI.correntePin(PrimeiroEmissor,SegundoEmissor)):
+#            if(arduinoSPI.correntePin(PrimeiroEmissor,SegundoEmissor)):
                 
-                time.sleep(0.1)
+#                time.sleep(0.1)
 
-                for Leituras in range(1,14):
-                    PrimeiroEletrodoTensao = SegundoEmissor + Leituras
+#                for Leituras in range(1,14):
+#                    PrimeiroEletrodoTensao = SegundoEmissor + Leituras
 
-                    if(PrimeiroEletrodoTensao>14):
-                        PrimeiroEletrodoTensao = PrimeiroEletrodoTensao - 15
+#                    if(PrimeiroEletrodoTensao>14):
+#                        PrimeiroEletrodoTensao = PrimeiroEletrodoTensao - 15
                     
-                    SegundoEletrodoTensao = PrimeiroEletrodoTensao + 1
+#                    SegundoEletrodoTensao = PrimeiroEletrodoTensao + 1
 
-                    if(arduinoSPI.tensePin(PrimeiroEletrodoTensao,SegundoEletrodoTensao)):
-                        arduinoSPI.ativaLeituras()
-                        valor = arduinoSPI.Leitura()
-                        self.listaLeituras.append(valor)
+#                    if(arduinoSPI.tensePin(PrimeiroEletrodoTensao,SegundoEletrodoTensao)):
+#                        arduinoSPI.ativaLeituras()
+#                        valor = arduinoSPI.Leitura()
+#                        self.listaLeituras.append(valor)
                         
-                        numero += 1
-                        progresso = int(numero*100/208)
-                        self.progressBar.setValue(progresso)
-                        time.sleep(0.1)
+#                        numero += 1
+#                        progresso = int(numero*100/208)
+#                        self.progressBar.setValue(progresso)
+#                        time.sleep(0.1)
 
-        if(len(self.listaLeituras)>=208):
-            self.pushButton.setEnabled(True)
-            self.pushButton_2.setEnabled(True)
-            self.Img_status.setPixmap(QtGui.QPixmap("Img_Eit/desconectado.png"))
+#        if(len(self.listaLeituras)>=208):
+#            self.pushButton.setEnabled(True)
+#            self.pushButton_2.setEnabled(True)
+#            self.Img_status.setPixmap(QtGui.QPixmap("Img_Eit/desconectado.png"))
             
-            
+                    
